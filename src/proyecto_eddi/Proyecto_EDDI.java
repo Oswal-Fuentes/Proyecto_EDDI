@@ -7,41 +7,42 @@ public class Proyecto_EDDI {
     static Scanner sc = new Scanner(System.in);
 
     public static void main(String[] args) {
-        Arbol arbol = new Arbol();
+        Ejercicios x = new Ejercicios();
         boolean exit = false;
         while (exit == false) {
             switch (menu()) {
                 case 1:
-                   
+
                     break;
                 case 2:
 
                     break;
                 case 3:
-                    
+                   x.textCompress();
                     break;
                 case 4:
                     exit = true;
                     break;
                 default:
-                    System.out.println("Ingrese opcion dentro del rango");
+                    System.out.println("Programa no Encontrado!");
                     break;
             }
         }
     }
 
     public static int menu() {
-        System.out.println("---MENU---");
-        System.out.print("1) Agregar\n"
-                + "2) Limpiar\n"
-                + "3) Imprimir\n"
-                + "4) Salir\n");
+        System.out.println("-----------------MENU-------------------");
+        System.out.print("1) Evaluacion por Desempeño\n"
+                       + "2) Resolución de expresiones matemáticas\n"
+                       + "3) Compresión de Archivos de texto\n"
+                       + "4) Salir\n"
+                       + "Ingrese Opcion:");
         int pos = sc.nextInt();
         return pos;
     }
 
-    public static void print_tree(){
-        
+    public static void print_tree() {
+
     }
 
 }
