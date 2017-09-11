@@ -1,11 +1,15 @@
 package proyecto_eddi;
 
 import TDAS.B_Node;
+import TDAS.Node;
+import TDAS.Tree;
+import TDAS.queue;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
@@ -19,26 +23,41 @@ public class Ejercicios {
     }
 
     public void textCompress() {
-        ArrayList<B_Node> nodes = new ArrayList();
+        queue nodes=new queue();
         Table tb = new Table();
-        tb.FindFrequency(ReadString());
-
+        tb.GenerateTable(ReadString());
         System.out.println("----Tabla----\n" + tb.toString());
-
-        for (int i = 0; i < tb.size(); i++) {
-            sym_f left_son = tb.Pop();
-            sym_f right_son = tb.Pop();
-            int f = (left_son.getFrecuencia() + right_son.getFrecuencia());
-            nodes.add(new B_Node(new B_Node((Object) left_son.getCaracter(), left_son.getFrecuencia()),
-                    new B_Node((Object) right_son.getCaracter(), right_son.getFrecuencia())));
+        for (sym_f u : tb.getTable()) {
+            nodes.push(new Node(u.getCaracter(),u.getFrecuencia()));
         }
+        
+        System.out.println(tb.size());
         System.out.println("------Arbol------");
-        for (int i = 0; i < nodes.size(); i++) {
-            System.out.println(nodes.get(i).toString());
-        }
-
+        System.out.println(nodes.toString());
+        Tree x= GenerateTree(nodes);
+        System.out.println(x.toString());
+        
     }
-
+    public Tree GenerateTree(queue nodes){
+        while(nodes.size()>1){
+            nodes.Sort();
+                       Node l=nodes.pop();
+            Node r=nodes.pop();
+            if(l==null){
+                l=new Node();
+            }
+            if(r==null){
+                r= new Node();
+            }
+            nodes.push(new Node(l,r));
+            System.out.println("entro");
+            nodes.Sort();
+        }
+        
+        
+        return new Tree(nodes.pop());
+    }
+    
     public String ReadString() {
         String retVal = "";
         File fichero = null;

@@ -12,6 +12,7 @@ public class sym_f {
 
     public char getCaracter() {
         return caracter;
+       
     }
 
     public void setCaracter(char caracter) {
@@ -36,7 +37,7 @@ public class sym_f {
 
     @Override
     public String toString() {
-        return caracter+"\t"+frecuencia+"\n";
+        return "|"+caracter+"|\t|"+frecuencia+"|\t\t|"+cod+"|\n";
     }
   
 }
