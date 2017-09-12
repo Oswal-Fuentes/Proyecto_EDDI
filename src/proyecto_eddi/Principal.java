@@ -5,13 +5,21 @@
  */
 package proyecto_eddi;
 
+import TDAS.Node;
+import TDAS.Tree;
+import TDAS.queue;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.ArrayList;
 import javax.swing.JFileChooser;
 import javax.swing.UIManager;
 import javax.swing.filechooser.FileNameExtensionFilter;
+import javax.swing.tree.DefaultMutableTreeNode;
+import javax.swing.tree.DefaultTreeModel;
+import proyecto_eddi.CompresionTexto.Table;
+import proyecto_eddi.CompresionTexto.sym_f;
 
 /**
  *
@@ -48,6 +56,10 @@ public class Principal extends javax.swing.JFrame {
         jButton11 = new javax.swing.JButton();
         jButton12 = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
+        jButton13 = new javax.swing.JButton();
+        text_tree = new javax.swing.JDialog();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        jtree_text = new javax.swing.JTree();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
@@ -81,9 +93,21 @@ public class Principal extends javax.swing.JFrame {
         jButton11.setText("Guardar");
 
         jButton12.setText("Compress");
+        jButton12.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton12ActionPerformed(evt);
+            }
+        });
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel4.setText("Compresion de Archivos de Texto");
+
+        jButton13.setText("Show Tree");
+        jButton13.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton13ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout Compre_textLayout = new javax.swing.GroupLayout(Compre_text.getContentPane());
         Compre_text.getContentPane().setLayout(Compre_textLayout);
@@ -108,11 +132,12 @@ public class Principal extends javax.swing.JFrame {
                                     .addComponent(jButton9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(jButton8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(jButton10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jButton11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
+                                    .addComponent(jButton11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jButton13)))))
                     .addGroup(Compre_textLayout.createSequentialGroup()
                         .addGap(105, 105, 105)
                         .addComponent(jLabel4)))
-                .addContainerGap(49, Short.MAX_VALUE))
+                .addContainerGap(37, Short.MAX_VALUE))
         );
         Compre_textLayout.setVerticalGroup(
             Compre_textLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -126,7 +151,9 @@ public class Principal extends javax.swing.JFrame {
                     .addGroup(Compre_textLayout.createSequentialGroup()
                         .addComponent(jButton8)
                         .addGap(18, 18, 18)
-                        .addComponent(jButton9))
+                        .addComponent(jButton9)
+                        .addGap(39, 39, 39)
+                        .addComponent(jButton13))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(Compre_textLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -139,6 +166,27 @@ public class Principal extends javax.swing.JFrame {
                         .addComponent(jButton10)
                         .addGap(18, 18, 18)
                         .addComponent(jButton11)))
+                .addContainerGap())
+        );
+
+        javax.swing.tree.DefaultMutableTreeNode treeNode1 = new javax.swing.tree.DefaultMutableTreeNode("root");
+        jtree_text.setModel(new javax.swing.tree.DefaultTreeModel(treeNode1));
+        jScrollPane3.setViewportView(jtree_text);
+
+        javax.swing.GroupLayout text_treeLayout = new javax.swing.GroupLayout(text_tree.getContentPane());
+        text_tree.getContentPane().setLayout(text_treeLayout);
+        text_treeLayout.setHorizontalGroup(
+            text_treeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(text_treeLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        text_treeLayout.setVerticalGroup(
+            text_treeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(text_treeLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 417, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -224,12 +272,25 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton8ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        this.Compre_text.setModal(true);
+
         this.Compre_text.setTitle("Archivos de Texto");
         this.Compre_text.pack();//corrige error de tamaño al momento de abrir
         this.Compre_text.setLocationRelativeTo(this);//centra la ventana al relativo al padre
         this.Compre_text.setVisible(true);
     }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton13ActionPerformed
+
+        this.Compre_text.setModal(true);
+        this.text_tree.setTitle("Arbol De Frecuencia");
+        this.text_tree.pack();//corrige error de tamaño al momento de abrir
+        this.text_tree.setLocationRelativeTo(this);//centra la ventana al relativo al padre
+        this.text_tree.setVisible(true);
+    }//GEN-LAST:event_jButton13ActionPerformed
+
+    private void jButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton12ActionPerformed
+        textCompress();
+    }//GEN-LAST:event_jButton12ActionPerformed
     public String ReadString() {
         String retVal = "";
         File fichero = null;
@@ -264,9 +325,66 @@ public class Principal extends javax.swing.JFrame {
         }
         return retVal;
     }
-    /**
-     * @param args the command line arguments
-     */
+
+    public void textCompress() {
+        nodes = new queue();
+        tb = new Table();
+        tb.GenerateTable(txtp_texto.getText());
+        System.out.println("----Tabla----\n" + tb.toString());
+        for (sym_f u : tb.getTable()) {
+            nodes.push(new Node(u.getCaracter(), u.getFrecuencia()));
+        }
+        System.out.println("Frequency "+ tb.Frequency());
+
+        System.out.println("------Arbol------");
+        System.out.println(nodes.toString());
+        Tree x = GenerateTree(nodes);
+        System.out.println(x.toString());
+
+        //ARbol print
+        DefaultTreeModel m = (DefaultTreeModel) jtree_text.getModel();
+        DefaultMutableTreeNode r = new DefaultMutableTreeNode(x.getRoot().toString());
+        m.setRoot(r);
+        list_all(x.getRoot(), (DefaultMutableTreeNode) m.getRoot());
+
+    }
+
+    public void list_all(Node root, DefaultMutableTreeNode nodo) {
+        try {
+            for (int i = 0; i < 2; i++) {
+                if (root.getNodes().get(i).isLeaf()) {
+                    DefaultMutableTreeNode n = new DefaultMutableTreeNode(root.getNodes().get(i));
+                    nodo.add(n);
+                } else {
+                    DefaultMutableTreeNode n = new DefaultMutableTreeNode(root.getNodes().get(i).toString());
+                    nodo.add(n);
+                    list_all(root.getNodes().get(i), n);
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    public Tree GenerateTree(queue nodes) {
+        while (nodes.size() > 1) {
+            nodes.Sort();
+            Node l = nodes.pop();
+            Node r = nodes.pop();
+            if (l == null) {
+                l = new Node();
+            }
+            if (r == null) {
+                r = new Node();
+            }
+            nodes.push(new Node(l, r));
+            nodes.Sort();
+        }
+
+        return new Tree(nodes.pop());
+    }
+
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -298,13 +416,15 @@ public class Principal extends javax.swing.JFrame {
             }
         });
     }
-
+    queue nodes = new queue();
+    Table tb = new Table();
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JDialog Compre_text;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton10;
     private javax.swing.JButton jButton11;
     private javax.swing.JButton jButton12;
+    private javax.swing.JButton jButton13;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
@@ -319,7 +439,11 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTextPane jTextPane2;
+    private javax.swing.JTree jtree_text;
+    private javax.swing.JDialog text_tree;
     private javax.swing.JTextPane txtp_texto;
     // End of variables declaration//GEN-END:variables
+
 }

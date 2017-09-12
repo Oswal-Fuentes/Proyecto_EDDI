@@ -1,21 +1,23 @@
 package TDAS;
 
 import java.util.ArrayList;
+import javax.swing.tree.DefaultMutableTreeNode;
 
 public class Node {
 
-    protected ArrayList<Node> nodes = new ArrayList();
+    protected NodeList nodes = new NodeList();
     protected Node father;
     protected Object element;
     protected int frequency;
     protected boolean vacio;
-    protected int level;
+    protected boolean leaf;
     protected boolean visitado;
 
     public Node(Object element, int frequency) {
         this.element = element;
         this.frequency = frequency;
         this.vacio = false;
+        this.leaf = true;
     }
 
     public Node() {
@@ -27,17 +29,35 @@ public class Node {
         this.nodes.add(R);
         this.element = nodes.get(0).getFrequency()
                 + nodes.get(1).getFrequency();
+        this.frequency = (int) element;
+        this.leaf = false;
     }
 
     public boolean isVacio() {
         return vacio;
     }
 
+    public boolean isLeaf() {
+        return leaf;
+    }
+
+    public void setLeaf(boolean leaf) {
+        this.leaf = leaf;
+    }
+
+    public boolean isVisitado() {
+        return visitado;
+    }
+
+    public void setVisitado(boolean visitado) {
+        this.visitado = visitado;
+    }
+
     public void setVacio(boolean vacio) {
         this.vacio = vacio;
     }
 
-    public ArrayList<Node> getNodes() {
+    public NodeList getNodes() {
         return nodes;
     }
 
@@ -68,17 +88,12 @@ public class Node {
     public void setFrequency(int frequency) {
         this.frequency = frequency;
     }
-    public void Levels(int x){
-        if(nodes.size()>0){
-            this.level=x;
-        }else{
-            for (Node node : nodes) {
-                node.Levels(x++);
-            }
-        }
-    }
 
-   
-    
+ 
+
+    @Override
+    public String toString() {
+        return element.toString();
+    }
 
 }

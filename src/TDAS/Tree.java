@@ -1,5 +1,7 @@
 package TDAS;
 
+import javax.swing.tree.DefaultMutableTreeNode;
+
 public class Tree {
     protected Node root;
     protected String name;

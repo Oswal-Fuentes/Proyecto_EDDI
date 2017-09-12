@@ -33,7 +33,11 @@ public class Table {
     public ArrayList<sym_f> getTable() {
         return table;
     }
-
+    public int Frequency(){
+        int retVal=0;
+        retVal = table.stream().map((u) -> u.getFrecuencia()).reduce(retVal, Integer::sum);
+        return retVal;
+    }
     public void setTable(ArrayList<sym_f> table) {
         this.table = table;
     }

@@ -37,6 +37,7 @@ public class Ejercicios {
         Tree x= GenerateTree(nodes);
         System.out.println(x.toString());
         
+        
     }
     public Tree GenerateTree(queue nodes){
         while(nodes.size()>1){
